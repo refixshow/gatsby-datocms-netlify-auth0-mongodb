@@ -17,6 +17,6 @@ sendEmailRouter.post("/", (req, res) => {
   })
 })
 
-app.use("/.netlify/functions/sendEmail")
+app.use("/.netlify/functions/sendEmail", sendEmailRouter)
 
 exports.handler = serverless(app)
