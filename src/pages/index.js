@@ -4,7 +4,10 @@ import axios from "axios"
 export default function Home() {
   const handlePostClick = () => {
     axios
-      .post("/.netlify/functions/sendEmail", { abc: "abc" })
+      .post("/.netlify/functions/sendEmail", {
+        email: "adamscieszka@gmail.com",
+        text: "custom message",
+      })
       .then(response => {
         console.log(response)
       })
@@ -15,10 +18,7 @@ export default function Home() {
 
   const handleGetClick = () => {
     axios
-      .get("/.netlify/functions/sendEmail", {
-        email: "adamscieszka@gmail.com",
-        text: "taki o text",
-      })
+      .get("/.netlify/functions/sendEmail")
       .then(response => {
         console.log(response)
       })

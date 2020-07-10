@@ -1,8 +1,13 @@
 import express from "express"
 import serverless from "serverless-http"
 import nodemailer from "nodemailer"
+import bodyParser from "body-parser"
 
 const app = express()
+
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
 const sendEmailRouter = express.Router()
 
 sendEmailRouter.get("/", (req, res) => {
