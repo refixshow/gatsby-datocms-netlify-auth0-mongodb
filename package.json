@@ -7,7 +7,9 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
+    "gatsbyDev-lambdaDec": "npm run develop && npm run lambda-serve",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "lambda-serve": "netlify-lambda serve functions",
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
