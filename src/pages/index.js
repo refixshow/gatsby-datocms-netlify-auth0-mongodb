@@ -15,7 +15,10 @@ export default function Home() {
 
   const handleGetClick = () => {
     axios
-      .get("/.netlify/functions/sendEmail", { abc: "abc" })
+      .get("/.netlify/functions/sendEmail", {
+        email: "adamscieszka@gmail.com",
+        text: "taki o text",
+      })
       .then(response => {
         console.log(response)
       })
