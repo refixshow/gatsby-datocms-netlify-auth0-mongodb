@@ -4,7 +4,6 @@ const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 465,
   secure: true,
-  service: "gmail",
   auth: {
     type: "OAuth2",
     user: "adamscieszka@gmail.com",
@@ -12,9 +11,9 @@ const transporter = nodemailer.createTransport({
       "1094228178210-bjsgk40ru7p75nd40teu7307rgo8ssvr.apps.googleusercontent.com",
     clientSecret: "Xhl0t3Q8fFpRh5e2PXWB5FCp",
     refreshToken:
-      "1//041jYK9mFzPpUCgYIARAAGAQSNwF-L9IrOhZjeDg16neYMR_cMyior6BYPt9iQlkgKWPFEXV2zMEa9ciz3S3CN_ZMA6uwI3K8aMI",
+      "1//04ZTAf13QMNc8CgYIARAAGAQSNwF-L9Ir4q0rstrKPzEpyyzvwGAYroB6meT02PvV0bmtt_uZdglbDO1JXe8QSqfHhZXVbZdQ8p4",
     accessToken:
-      "ya29.a0AfH6SMDDyLmgn5bK4gtjvBrufnKBr2VXtDvb4G9x4t0OfL8F9RvUsh2BJNADi6qdQFxIfZ4K-p-zTIwbP9MqbDlX8Qw3JP7sbVLlR0Gc2OvlV_DJsWppidgrOS8211OfExS3FOcMYZohU1OFX9eXUPYtH6LMZk4uwUk",
+      "ya29.a0AfH6SMDJ2cRBaM79zo8xsri4Mt_PauK2YKWUS0qSJ3dvYtH_1JVX5Mn8xcZTEEt4gHXbfvqjpFG9nnJokYqTo74R9lLWB1ZIJs6cEWD5Lev8PiInhpnSJsE6kzYIubjv0GewkkQ-F70is6dFzxSjo1OR-g8JYQOF-xo",
   },
 })
 
