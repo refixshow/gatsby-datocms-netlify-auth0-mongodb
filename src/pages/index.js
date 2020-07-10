@@ -11,6 +11,12 @@ export default function Home() {
         email: "adamscieszka@gmail.com",
       }
     )
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }, [])
 
   return <div>Hello world!</div>
