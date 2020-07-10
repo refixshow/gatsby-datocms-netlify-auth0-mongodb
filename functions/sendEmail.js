@@ -1,15 +1,22 @@
-exports.handler = function (event, context, callback) {
-  if (event.httpMethod === "POST") {
-    callback(null, {
-      statusCode: 200,
-      body: JSON.parse(event.body),
-    })
-  }
+import express from "express"
+import serverless from "serverless-http"
 
-  if (event.httpMethod === "GET") {
-    callback(null, {
-      statusCode: 200,
-      body: JSON.parse(event.body),
-    })
-  }
-}
+const app = express()
+
+const sendEmailRouter = express.Router()
+
+sendEmailRouter.get("/", (req, res) => {
+  res.json({
+    hello: "get",
+  })
+})
+
+sendEmailRouter.post("/", (req, res) => {
+  res.json({
+    hello: "post",
+  })
+})
+
+app.use("/.netlify/functions/sendEmail")
+
+exports.handler = serverless(app)
