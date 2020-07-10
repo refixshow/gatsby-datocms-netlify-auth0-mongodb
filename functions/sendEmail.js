@@ -40,7 +40,7 @@ sendEmailRouter.post("/", (req, res) => {
       })
     } else {
       res.status(200).json({
-        hello: "POSZŁO",
+        hello: "POSZŁOO",
       })
     }
   })
