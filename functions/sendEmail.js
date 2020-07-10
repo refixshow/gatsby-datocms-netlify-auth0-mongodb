@@ -9,7 +9,7 @@ exports.handler = function (event, context, callback) {
   if (event.httpMethod === "GET") {
     callback(null, {
       statusCode: 200,
-      body: "body is here",
+      body: JSON.parse(event.body),
     })
   }
 }

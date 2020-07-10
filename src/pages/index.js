@@ -1,20 +1,34 @@
 import React, { useEffect } from "react"
-import Axios from "axios"
+import axios from "axios"
 
 export default function Home() {
-  useEffect(() => {
-    Axios.post("/.netlify/functions/sendEmail", {
-      message: "xddd",
-      name: "name",
-      email: "adamscieszka@gmail.com",
-    })
-      .then(res => {
-        console.log(res)
+  const handlePostClick = () => {
+    axios
+      .post("/.netlify/functions/sendEmail", { abc: "abc" })
+      .then(response => {
+        console.log(response)
       })
       .catch(err => {
         console.log(err)
       })
-  }, [])
+  }
 
-  return <div>Hello world!</div>
+  const handleGetClick = () => {
+    axios
+      .get("/.netlify/functions/sendEmail", { abc: "abc" })
+      .then(response => {
+        console.log(response)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
+  return (
+    <div>
+      Hello world!
+      <button onClick={handlePostClick}>Post</button>
+      <button onClick={handleGetClick}>Get</button>
+    </div>
+  )
 }
