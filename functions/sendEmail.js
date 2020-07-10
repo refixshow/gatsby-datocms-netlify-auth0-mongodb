@@ -36,11 +36,11 @@ sendEmailRouter.post("/", (req, res) => {
     if (err) {
       console.log(err)
       res.status(404).json({
-        hello: "ERROR",
+        muczo: "ERROR",
       })
     } else {
       res.status(200).json({
-        hello: "POSZŁOO",
+        muczo: "POSZŁOO",
       })
     }
   })
