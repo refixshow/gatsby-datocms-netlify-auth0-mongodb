@@ -16,15 +16,14 @@ const calendar = google.calendar({ version: "v3", auth: OAuth2Client })
 
 // Create a new event start date instance for temp uses in our calendar.
 const eventStartTime = new Date()
-eventStartTime.setDate(eventStartTime.getDay() + 2)
-
-console.log(eventStartTime)
+eventStartTime.setDate(eventStartTime.getDay())
 
 // Create a new event end date instance for temp uses in our calendar.
 const eventEndTime = new Date()
-eventEndTime.setDate(eventEndTime.getDay() + 2)
+eventEndTime.setDate(eventEndTime.getDay())
 eventEndTime.setMinutes(eventEndTime.getMinutes() + 45)
 
+const timeZone = "Europe/Warsaw"
 // Create a dummy event for temp uses in our calendar
 const eventCalendar = {
   summary: `Meeting with David`,
@@ -33,15 +32,15 @@ const eventCalendar = {
   colorId: 1,
   start: {
     dateTime: eventStartTime,
-    timeZone: "America/Denver",
+    timeZone,
   },
   end: {
     dateTime: eventEndTime,
-    timeZone: "America/Denver",
+    timeZone,
   },
 }
 
-exports.handler = (event, context, callback) => {
+exports.handler = function (event, context, callback) {
   if (event.httpMethod === "POST") {
     // Check if we a busy and have an event on our calendar for the same time.
     calendar.freebusy.query(
@@ -49,7 +48,7 @@ exports.handler = (event, context, callback) => {
         resource: {
           timeMin: eventStartTime,
           timeMax: eventEndTime,
-          timeZone: "America/Denver",
+          timeZone,
           items: [{ id: "primary" }],
         },
       },
