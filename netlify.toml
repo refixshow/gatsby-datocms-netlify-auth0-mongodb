@@ -1,2 +1,7 @@
 [build]
   functions = "functions-prod"
+[[redirects]]
+  from = "/.netlify/functions/*"
+  to = "/"
+  status = 200
+  force = false

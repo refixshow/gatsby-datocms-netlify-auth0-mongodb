@@ -23,8 +23,6 @@ const mailOptions = {
 }
 
 exports.handler = function (event, context, callback) {
-  console.log("XDD")
-
   if (event.httpMethod === "POST") {
     const { email, text } = JSON.parse(event.body)
 
