@@ -42,5 +42,10 @@ exports.handler = function (event, context, callback) {
 
     mailOptions.from = "adamscieszka@gmail.com"
     mailOptions.text = "text"
+  } else {
+    callback(null, {
+      statusCode: 404,
+      body: "not found",
+    })
   }
 }
