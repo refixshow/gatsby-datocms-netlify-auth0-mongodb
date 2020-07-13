@@ -1,2 +1,7 @@
 [build]
   functions = "functions-prod"
+
+[[redirects]]
+  from = "/custom"
+  to = "/"
+  status = 301
