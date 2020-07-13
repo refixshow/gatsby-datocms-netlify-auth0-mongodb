@@ -1,4 +1,4 @@
-import nodemailer from "nodemailer"
+const nodemailer = require("nodemailer")
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -9,9 +9,9 @@ const transporter = nodemailer.createTransport({
       "1094228178210-bjsgk40ru7p75nd40teu7307rgo8ssvr.apps.googleusercontent.com",
     clientSecret: "Xhl0t3Q8fFpRh5e2PXWB5FCp",
     refreshToken:
-      "1//047deFZ6dQ-6qCgYIARAAGAQSNwF-L9IrPmV7sE1mMHvo-pephGYioJXFwXLVkd2oHFKXq5KIn5cbjid8eCetfXyr7AH3HLO_J08",
+      "1//04g52H3f9HMBXCgYIARAAGAQSNwF-L9IrsBEBYFZ--OEOIO2mW8zCxCjpXqTl6ZMcRh5CEOago_a70cyAT5DXMM-Kq6po-HluLSA",
     accessToken:
-      "ya29.a0AfH6SMANZwyu1-4Jo-zmdyNd8Bw3K7wuzmnSTrk6eJG3vCtyLpESL5QcC-Xzv7ziiCwgouGDYtz8SF-sYAv8-0tQwPekFRZj90zgI3j1FgB18Vm5bE9KHHDTw8A6wgFDRh5nOeM2H-rxp1SHIUPJvVTcwzY05-MtQ_s",
+      "ya29.a0AfH6SMAuhNczT-Rs_mWP82EiAU-n0dev4Myb1G6_BlJzwrGknVh3UjcBjexyjbMIA5Onbj9zFQXWpv5RC5S4-bugpxjGGyzNxwEON6hNo2ttP-mOWIEGTcEMinxvLEc4g2yEpYGaPxVXr1fWyxPrhfCS5Wov_MXLWwE",
   },
 })
 
@@ -22,7 +22,7 @@ const mailOptions = {
   text: "text",
 }
 
-exports.handler = function (event, context, callback) {
+exports.handler = (event, context, callback) => {
   const { email, text } = JSON.parse(event.body)
 
   if (event.httpMethod === "POST" && email && text) {

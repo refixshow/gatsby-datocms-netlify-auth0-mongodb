@@ -32,6 +32,14 @@ export default function Home() {
       Hello world!
       <button onClick={handlePostClick}>Post</button>
       <button onClick={handleGetClick}>Get</button>
+      <iframe
+        src="https://calendar.google.com/calendar/embed?src=adamscieszka%40gmail.com&ctz=Europe%2FWarsaw"
+        width="800"
+        height="600"
+        frameborder="0"
+        scrolling="no"
+        title="google calendar"
+      ></iframe>
     </div>
   )
 }

@@ -7,9 +7,8 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
-    "gatsbyDev-lambdaDec": "npm run develop && npm run lambda-serve",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "lambda-serve": "netlify-lambda serve functions",
+    "lambda": "netlify-lambda serve functions",
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
@@ -20,6 +19,7 @@
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "gatsby": "^2.23.12",
+    "googleapis": "^52.1.0",
     "netlify-lambda": "^1.6.3",
     "nodemailer": "^6.4.10",
     "react": "^16.12.0",
