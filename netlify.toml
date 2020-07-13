@@ -1,7 +1,2 @@
 [build]
   functions = "functions-prod"
-
-[[redirects]]
-  from = "/.netlify/functions/*"
-  to = "/"
-  status = 301
