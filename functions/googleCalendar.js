@@ -16,11 +16,11 @@ const calendar = google.calendar({ version: "v3", auth: OAuth2Client })
 
 // Create a new event start date instance for temp uses in our calendar.
 const eventStartTime = new Date()
-eventStartTime.setDate(eventStartTime.getDay())
+eventStartTime.setDate(eventStartTime.getDate() + 2)
 
 // Create a new event end date instance for temp uses in our calendar.
 const eventEndTime = new Date()
-eventEndTime.setDate(eventEndTime.getDay())
+eventEndTime.setDate(eventEndTime.getDate() + 2)
 eventEndTime.setMinutes(eventEndTime.getMinutes() + 45)
 
 const timeZone = "Europe/Warsaw"

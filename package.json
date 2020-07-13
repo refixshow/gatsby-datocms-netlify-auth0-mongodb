@@ -15,16 +15,26 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "dependencies": {
+    "@reach/dialog": "^0.10.5",
+    "@reach/tabs": "^0.10.5",
+    "@reach/visually-hidden": "^0.10.4",
+    "@stripe/react-stripe-js": "^1.1.2",
+    "@stripe/stripe-js": "^1.8.0",
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
-    "gatsby": "^2.23.12",
+    "gatsby": "^2.24.2",
     "googleapis": "^52.1.0",
+    "netlify-identity-widget": "^1.8.0",
     "netlify-lambda": "^1.6.3",
     "nodemailer": "^6.4.10",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "serverless-http": "^2.5.0"
+    "react-netlify-identity": "^0.2.5",
+    "react-netlify-identity-widget": "^0.2.7",
+    "react-stripe-checkout": "^2.6.3",
+    "serverless-http": "^2.5.0",
+    "stripe": "^8.70.0"
   },
   "devDependencies": {
     "prettier": "2.0.5"
