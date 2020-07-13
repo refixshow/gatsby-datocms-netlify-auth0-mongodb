@@ -23,9 +23,9 @@ const mailOptions = {
 }
 
 exports.handler = function (event, context, callback) {
-  if (event.httpMethod === "POST") {
-    const { email, text } = JSON.parse(event.body)
+  const { email, text } = JSON.parse(event.body)
 
+  if (event.httpMethod === "POST" && email && text) {
     mailOptions.from = email
     mailOptions.text = text
 
