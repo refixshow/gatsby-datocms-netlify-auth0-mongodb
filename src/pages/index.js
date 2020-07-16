@@ -63,6 +63,7 @@ export default function Home() {
         onSignup={user => console.log("welcome ", user?.user_metadata)}
         onLogout={() => console.log("bye ", name)}
       />
+      XD
     </div>
   )
 }
