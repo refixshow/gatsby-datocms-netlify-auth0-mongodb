@@ -73,7 +73,6 @@ export default function Home() {
       ></iframe> */}
       <pre>{JSON.stringify(identity, null, 2)}</pre>{" "}
       <button onClick={handleBuy}>XD</button>
-      <button onClick={handleId}>id</button>
     </Layout>
   )
 }
