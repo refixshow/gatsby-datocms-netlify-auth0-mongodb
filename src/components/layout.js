@@ -13,8 +13,8 @@ const Layout = ({ children }) => {
       identity.user.user_metadata.name) ||
     "NoName"
 
-  console.log(JSON.stringify(identity))
   const isLoggedIn = identity && identity.isLoggedIn
+
   return (
     <>
       <nav style={{ background: "green" }}>

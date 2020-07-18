@@ -52,6 +52,16 @@ export default function Home() {
   //     })
   // }
 
+  const handleId = async () => {
+    const res = await axios.post("/.netlify/functions/protected-function", {
+      headers: {
+        Authorization: `Barer ${identity.user.token.access_token}`,
+      },
+    })
+
+    console.log(res)
+  }
+
   return (
     <Layout>
       {/* Hello world!
@@ -67,6 +77,7 @@ export default function Home() {
       ></iframe> */}
       <pre>{JSON.stringify(identity, null, 2)}</pre>{" "}
       <button onClick={handleBuy}>XD</button>
+      <button onClick={handleId}>id</button>
     </Layout>
   )
 }
