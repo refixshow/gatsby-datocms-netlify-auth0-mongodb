@@ -22,6 +22,7 @@ exports.handler = async function (event, context, callback) {
     success_url: "https://keen-meitner-56c2e9.netlify.app/success",
     cancel_url: "https://keen-meitner-56c2e9.netlify.app/cancel",
     customer_email: "adamscieszka@gmail.com",
+    locale: "pl",
   })
 
   callback(null, {
