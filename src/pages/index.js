@@ -22,13 +22,8 @@ export default function Home() {
       sessionId: getSessionId.data.sessionId,
     })
 
-    if (!error) {
-      const res = axios.post(
-        "https://keen-meitner-56c2e9.netlify.app/.netlify/functions/stripe",
-        { email: "adamscieszka@gmail.com", text: "test" }
-      )
-
-      console.log(res)
+    if (error) {
+      console.log(error)
     }
   }
 
