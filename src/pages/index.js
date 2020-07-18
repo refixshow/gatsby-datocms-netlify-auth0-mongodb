@@ -1,5 +1,10 @@
 import React, { useState } from "react"
 import axios from "axios"
+import { loadStripe } from "@stripe/react-stripe-js"
+
+// const stripePromise = loadStripe(
+//   "pk_test_51H4VmCK3hG2pI0lfXholFUbbqaJHBdqJ8WEaxYBeTVzpflcti4PxCNM0LOQlrRH880UEzweUPpRoFQnF0DhAFdqN00DBwPUvVT"
+// )
 // import {
 //   IdentityModal,
 //   useIdentityContext,
@@ -9,6 +14,14 @@ import axios from "axios"
 // import axios from "axios"
 
 export default function Home() {
+  const handleBuy = async () => {
+    const res = await axios.post(
+      "https://keen-meitner-56c2e9.netlify.app/.netlify/functions/stripe"
+    )
+
+    console.log(res)
+  }
+
   // const identity = useIdentityContext()
   // const [dialog, setDialog] = useState(false)
   // const name =
@@ -65,6 +78,8 @@ export default function Home() {
         onLogout={() => console.log("bye ", name)}
       />
       XD */}
+
+      <button onClick={handleBuy}>XD</button>
     </div>
   )
 }
