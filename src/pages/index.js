@@ -13,11 +13,11 @@ export default function Home() {
   const identity = useIdentityContext()
 
   const handleBuy = async () => {
-    const getSessionId = await axios.post(
+    const getSessionId = await axios(
       "https://keen-meitner-56c2e9.netlify.app/.netlify/functions/stripe",
       identity.user && {
         headers: {
-          Authorization: `Bearer ${identity.user.token.access_token}`,
+          Authorization: `bearer ${identity.user.token.access_token}`,
         },
       }
     )
@@ -73,6 +73,7 @@ export default function Home() {
       ></iframe> */}
       <pre>{JSON.stringify(identity, null, 2)}</pre>{" "}
       <button onClick={handleBuy}>XD</button>
+      <button onClick={handleId}>id</button>
     </Layout>
   )
 }
