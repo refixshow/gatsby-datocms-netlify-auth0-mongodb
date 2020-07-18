@@ -1,18 +1,16 @@
 import React, { useState } from "react"
 import axios from "axios"
 import { loadStripe } from "@stripe/stripe-js"
-import { Link } from "gatsby"
+import {
+  IdentityModal,
+  useIdentityContext,
+} from "react-netlify-identity-widget"
+import "react-netlify-identity-widget/styles.css"
+import "@reach/tabs/styles.css"
 
 const stripePromise = loadStripe(
   "pk_test_51H4VmCK3hG2pI0lfXholFUbbqaJHBdqJ8WEaxYBeTVzpflcti4PxCNM0LOQlrRH880UEzweUPpRoFQnF0DhAFdqN00DBwPUvVT"
 )
-// import {
-//   IdentityModal,
-//   useIdentityContext,
-// } from "react-netlify-identity-widget"
-// import "react-netlify-identity-widget/styles.css"
-// import "@reach/tabs/styles.css"
-// import axios from "axios"
 
 export default function Home() {
   const handleBuy = async () => {
@@ -38,14 +36,14 @@ export default function Home() {
     }
   }
 
-  // const identity = useIdentityContext()
-  // const [dialog, setDialog] = useState(false)
-  // const name =
-  //   (identity &&
-  //     identity.user &&
-  //     identity.user.user_metadata &&
-  //     identity.user.user_metadata.full_name) ||
-  //   "NoName"
+  const identity = useIdentityContext()
+  const [dialog, setDialog] = useState(false)
+  const name =
+    (identity &&
+      identity.user &&
+      identity.user.user_metadata &&
+      identity.user.user_metadata.full_name) ||
+    "NoName"
 
   // const handlePostClick = () => {
   //   axios
@@ -84,7 +82,7 @@ export default function Home() {
         frameborder="0"
         scrolling="no"
         title="google calendar"
-      ></iframe>
+      ></iframe> */}
       <button onClick={() => setDialog(!dialog)}>click</button>
       <IdentityModal
         showDialog={dialog}
@@ -93,8 +91,7 @@ export default function Home() {
         onSignup={user => console.log("welcome ", user?.user_metadata)}
         onLogout={() => console.log("bye ", name)}
       />
-      XD */}
-
+      XD
       <button onClick={handleBuy}>XD</button>
     </div>
   )
