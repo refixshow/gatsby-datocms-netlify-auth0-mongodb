@@ -53,18 +53,21 @@ export default function Home() {
   // }
 
   const handleId = async () => {
-    console.log(`Bearer ${identity.user.token.access_token}`)
+    const Token = await identity.user.jwt()
 
-    const res = await axios.post(
-      "/.netlify/functions/protected-function",
-      identity.user && {
-        headers: {
-          Authorization: `Bearer ${identity.user.token.access_token}`,
-        },
-      }
-    )
+    console.log(Token)
 
-    console.log(res)
+    if (Token) {
+      const res = await axios.post(
+        "/.netlify/functions/protected-function",
+        identity.user && {
+          headers: {
+            Authorization: `Bearer ${Token}`,
+          },
+        }
+      )
+      console.log(res)
+    }
   }
 
   return (
