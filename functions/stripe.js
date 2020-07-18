@@ -14,11 +14,7 @@ const headers = {
 exports.handler = async function (event, context, callback) {
   const claims = context.clientContext && context.clientContext.user
 
-  console.log(claims)
-
   if (claims) {
-    console.log(claims.user.email)
-
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       line_items: [
@@ -30,7 +26,7 @@ exports.handler = async function (event, context, callback) {
       mode: "payment",
       success_url: "https://keen-meitner-56c2e9.netlify.app/success",
       cancel_url: "https://keen-meitner-56c2e9.netlify.app/cancel",
-      customer_email: "adamscieszka@gmail.com",
+      customer_email: claims.email,
       locale: "pl",
     })
 
