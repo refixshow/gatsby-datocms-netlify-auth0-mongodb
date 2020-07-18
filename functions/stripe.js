@@ -12,8 +12,8 @@ exports.handler = async function (event, context, callback) {
       },
     ],
     mode: "payment",
-    success_url: "https://keen-meitner-56c2e9.netlify.app/success",
-    cancel_url: "https://keen-meitner-56c2e9.netlify.app/cancel",
+    success_url: "https://keen-meitner-56c2e9.netlify.app/",
+    cancel_url: "https://keen-meitner-56c2e9.netlify.app/",
   })
 
   callback(null, {
