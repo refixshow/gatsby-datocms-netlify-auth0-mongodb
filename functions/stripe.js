@@ -14,6 +14,8 @@ const headers = {
 exports.handler = async function (event, context, callback) {
   const claims = context.clientContext && context.clientContext.user
 
+  console.log(claims)
+
   if (claims) {
     console.log(claims.user.email)
 
@@ -28,7 +30,7 @@ exports.handler = async function (event, context, callback) {
       mode: "payment",
       success_url: "https://keen-meitner-56c2e9.netlify.app/success",
       cancel_url: "https://keen-meitner-56c2e9.netlify.app/cancel",
-      customer_email: context.clientContext.user.email,
+      customer_email: "adamscieszka@gmail.com",
       locale: "pl",
     })
 
