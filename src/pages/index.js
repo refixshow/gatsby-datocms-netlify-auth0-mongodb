@@ -15,17 +15,17 @@ const stripePromise = loadStripe(
 
 export default function Home() {
   const handleBuy = async () => {
-    const res = await axios.post(
+    const getSessionId = await axios.post(
       "https://keen-meitner-56c2e9.netlify.app/.netlify/functions/stripe"
     )
 
-    console.log(res)
-
     const stripe = await stripePromise
 
-    const { error } = await stripe.redirectToCheckout({
-      sessionId: res.data.sessionId,
+    const paymentResult = await stripe.redirectToCheckout({
+      sessionId: getSessionId.data.sessionId,
     })
+
+    console.log(paymentResult)
   }
 
   // const identity = useIdentityContext()
