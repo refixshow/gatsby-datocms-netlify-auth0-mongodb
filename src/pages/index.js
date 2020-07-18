@@ -14,12 +14,15 @@ import { loadStripe } from "@stripe/react-stripe-js"
 // import axios from "axios"
 
 export default function Home() {
-  const handleBuy = async () => {
-    const res = await axios.post(
-      "https://keen-meitner-56c2e9.netlify.app/.netlify/functions/stripe"
-    )
-
-    console.log(res)
+  const handleBuy = () => {
+    axios
+      .post("https://keen-meitner-56c2e9.netlify.app/.netlify/functions/stripe")
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+        console.log(res)
+      })
   }
 
   // const identity = useIdentityContext()
