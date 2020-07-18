@@ -53,6 +53,8 @@ export default function Home() {
   // }
 
   const handleId = async () => {
+    console.log(`Bearer ${identity.user.token.access_token}`)
+
     const res = await axios.post(
       "/.netlify/functions/protected-function",
       identity.user && {
