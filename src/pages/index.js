@@ -57,7 +57,7 @@ export default function Home() {
       "/.netlify/functions/protected-function",
       identity.user && {
         headers: {
-          Authorization: `Barer ${identity.user.token.access_token}`,
+          Authorization: `Bearer ${identity.user.token.access_token}`,
         },
       }
     )
