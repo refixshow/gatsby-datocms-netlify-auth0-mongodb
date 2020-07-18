@@ -1,18 +1,16 @@
-import React, { useState } from "react"
+import React from "react"
 import axios from "axios"
 import { loadStripe } from "@stripe/stripe-js"
-import {
-  IdentityModal,
-  useIdentityContext,
-} from "react-netlify-identity-widget"
-import "react-netlify-identity-widget/styles.css"
-import "@reach/tabs/styles.css"
+
+import Layout from "../components/layout"
+import { useIdentityContext } from "react-netlify-identity-widget"
 
 const stripePromise = loadStripe(
   "pk_test_51H4VmCK3hG2pI0lfXholFUbbqaJHBdqJ8WEaxYBeTVzpflcti4PxCNM0LOQlrRH880UEzweUPpRoFQnF0DhAFdqN00DBwPUvVT"
 )
 
 export default function Home() {
+  const identity = useIdentityContext()
   const handleBuy = async () => {
     const getSessionId = await axios.post(
       "https://keen-meitner-56c2e9.netlify.app/.netlify/functions/stripe"
@@ -35,15 +33,6 @@ export default function Home() {
       console.log(res)
     }
   }
-
-  const identity = useIdentityContext()
-  const [dialog, setDialog] = useState(false)
-  const name =
-    (identity &&
-      identity.user &&
-      identity.user.user_metadata &&
-      identity.user.user_metadata.full_name) ||
-    "NoName"
 
   // const handlePostClick = () => {
   //   axios
@@ -71,7 +60,7 @@ export default function Home() {
   // }
 
   return (
-    <div>
+    <Layout>
       {/* Hello world!
       <button onClick={handlePostClick}>Post</button>
       <button onClick={handleGetClick}>Get</button>
@@ -83,16 +72,8 @@ export default function Home() {
         scrolling="no"
         title="google calendar"
       ></iframe> */}
-      <button onClick={() => setDialog(!dialog)}>click</button>
-      <IdentityModal
-        showDialog={dialog}
-        onCloseDialog={() => setDialog(false)}
-        onLogin={user => console.log("hello ", user?.user_metadata)}
-        onSignup={user => console.log("welcome ", user?.user_metadata)}
-        onLogout={() => console.log("bye ", name)}
-      />
-      XD
+      <pre>{JSON.stringify(identity, null, 2)}</pre>{" "}
       <button onClick={handleBuy}>XD</button>
-    </div>
+    </Layout>
   )
 }

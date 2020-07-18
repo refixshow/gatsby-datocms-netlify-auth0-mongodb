@@ -1,10 +1,10 @@
-/**
- * Configure your Gatsby site with this file.
- *
- * See: https://www.gatsbyjs.org/docs/gatsby-config/
- */
-
 module.exports = {
-  /* Your site config here */
-  plugins: [],
+  plugins: [
+    {
+      resolve: `gatsby-plugin-netlify-identity`,
+      options: {
+        url: `https://keen-meitner-56c2e9.netlify.app/.netlify/identity`, // required!
+      },
+    },
+  ],
 }

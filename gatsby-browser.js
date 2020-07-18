@@ -1,11 +1,9 @@
-const { IdentityContextProvider } = require("react-netlify-identity-widget")
-const React = require("react")
+import React from "react"
+import { IdentityContextProvider } from "react-netlify-identity-widget"
+import "react-netlify-identity-widget/styles.css"
 
-exports.wrapPageElement = ({ element, props }) => {
-  const url = "https://keen-meitner-56c2e9.netlify.app/.netlify/identity"
-  return (
-    <IdentityContextProvider url={url} {...props}>
-      {element}
-    </IdentityContextProvider>
-  )
-}
+export const wrapRootElement = ({ element }) => (
+  <IdentityContextProvider url="https://hungry-yonath-ed6433.netlify.com/">
+    {element}
+  </IdentityContextProvider>
+)
