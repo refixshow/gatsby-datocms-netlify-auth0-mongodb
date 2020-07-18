@@ -26,7 +26,7 @@ export default function Home() {
       sessionId,
     })
 
-    console.log(sessionId)
+    console.log(sessionId, error)
   }
 
   // const identity = useIdentityContext()
