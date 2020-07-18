@@ -10,7 +10,7 @@ const headers = {
 }
 
 exports.handler = async function (event, context, callback) {
-  console.log(context.clientContext)
+  console.log(context.clientContext.user)
 
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
