@@ -17,7 +17,12 @@ exports.handler = async function (event, context, callback) {
   })
 
   callback(null, {
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Headers":
+        "Origin, X-Requested-With, Content-Type, Accept",
+    },
     statusCode: 200,
-    body: session.id,
+    body: JSON.stringify({ sessionId: session.id }),
   })
 }
