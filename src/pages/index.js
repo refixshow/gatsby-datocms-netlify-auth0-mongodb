@@ -2,10 +2,6 @@ import React, { useState } from "react"
 import axios from "axios"
 import { loadStripe } from "@stripe/react-stripe-js"
 
-const stripePromise = loadStripe(
-  "pk_test_51H4VmCK3hG2pI0lfXholFUbbqaJHBdqJ8WEaxYBeTVzpflcti4PxCNM0LOQlrRH880UEzweUPpRoFQnF0DhAFdqN00DBwPUvVT"
-)
-
 // import {
 //   IdentityModal,
 //   useIdentityContext,
@@ -20,7 +16,9 @@ export default function Home() {
       "https://keen-meitner-56c2e9.netlify.app/.netlify/functions/stripe"
     )
 
-    const stripe = await stripePromise
+    const stripe = await loadStripe(
+      "pk_test_51H4VmCK3hG2pI0lfXholFUbbqaJHBdqJ8WEaxYBeTVzpflcti4PxCNM0LOQlrRH880UEzweUPpRoFQnF0DhAFdqN00DBwPUvVT"
+    )
 
     const { error } = await stripe.redirectToCheckout({
       sessionId,
