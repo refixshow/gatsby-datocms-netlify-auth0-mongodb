@@ -2,6 +2,9 @@ import React, { useState } from "react"
 import axios from "axios"
 import { loadStripe } from "@stripe/stripe-js"
 
+const stripePromise = loadStripe(
+  "pk_test_51H4VmCK3hG2pI0lfXholFUbbqaJHBdqJ8WEaxYBeTVzpflcti4PxCNM0LOQlrRH880UEzweUPpRoFQnF0DhAFdqN00DBwPUvVT"
+)
 // import {
 //   IdentityModal,
 //   useIdentityContext,
@@ -12,19 +15,15 @@ import { loadStripe } from "@stripe/stripe-js"
 
 export default function Home() {
   const handleBuy = async () => {
-    const { data: sessionId } = await axios.post(
+    const res = await axios.post(
       "https://keen-meitner-56c2e9.netlify.app/.netlify/functions/stripe"
     )
 
-    const stripe = await loadStripe(
-      "pk_test_51H4VmCK3hG2pI0lfXholFUbbqaJHBdqJ8WEaxYBeTVzpflcti4PxCNM0LOQlrRH880UEzweUPpRoFQnF0DhAFdqN00DBwPUvVT"
-    )
+    const stripe = await stripePromise
 
     const { error } = await stripe.redirectToCheckout({
-      sessionId,
+      sessionId: res.data.sessionId,
     })
-
-    console.log(sessionId, error)
   }
 
   // const identity = useIdentityContext()
