@@ -2,6 +2,13 @@ const stripe = require("stripe")(
   "sk_test_51H4VmCK3hG2pI0lfwRGQwmgjB8xcXXOrn7yNxQpgmTOot6uRNczUu5imfaNV1nSPxy3GhT6SGPpejnN0WoLaCxdl00Ezz8JIhE"
 )
 
+const headers = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers": "Content-Type",
+  "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
+  "Content-Type": "application/json",
+}
+
 exports.handler = async function (event, context, callback) {
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
@@ -17,13 +24,8 @@ exports.handler = async function (event, context, callback) {
   })
 
   callback(null, {
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Headers":
-        "Origin, X-Requested-With, Content-Type, Accept",
-      "Content-Type": "application/json",
-    },
     statusCode: 200,
+    headers,
     body: JSON.stringify({ sessionId: session.id }),
   })
 }

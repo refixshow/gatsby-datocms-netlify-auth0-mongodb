@@ -24,6 +24,8 @@ export default function Home() {
 
     const { error } = await stripe.redirectToCheckout({
       sessionId: getSessionId.data.sessionId,
+      locale: "pl",
+      customerEmail: "adamscieszka@gmail.com",
     })
 
     if (!error) {
