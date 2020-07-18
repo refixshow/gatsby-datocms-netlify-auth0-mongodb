@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import axios from "axios"
-import { loadStripe } from "@stripe/react-stripe-js"
+import { loadStripe } from "@stripe/stripe-js"
 
 // import {
 //   IdentityModal,
