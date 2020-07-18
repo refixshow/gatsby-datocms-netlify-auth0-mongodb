@@ -11,9 +11,17 @@ const stripePromise = loadStripe(
 
 export default function Home() {
   const identity = useIdentityContext()
+
   const handleBuy = async () => {
     const getSessionId = await axios.post(
-      "https://keen-meitner-56c2e9.netlify.app/.netlify/functions/stripe"
+      "https://keen-meitner-56c2e9.netlify.app/.netlify/functions/stripe",
+      identity.user
+        ? {
+            headers: {
+              Authorization: `bearer ${identity.user.token.access_token}`,
+            },
+          }
+        : identity.loginUser()
     )
 
     const stripe = await stripePromise
@@ -53,14 +61,7 @@ export default function Home() {
   // }
 
   const handleId = async () => {
-    const res = await axios(
-      "/.netlify/functions/protected-function",
-      identity.user && {
-        headers: {
-          Authorization: `bearer ${identity.user.token.access_token}`,
-        },
-      }
-    )
+    const res = await axios("/.netlify/functions/protected-function")
     console.log(res)
   }
 
