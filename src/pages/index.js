@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import axios from "axios"
 import { loadStripe } from "@stripe/stripe-js"
+import { Link } from "gatsby"
 
 const stripePromise = loadStripe(
   "pk_test_51H4VmCK3hG2pI0lfXholFUbbqaJHBdqJ8WEaxYBeTVzpflcti4PxCNM0LOQlrRH880UEzweUPpRoFQnF0DhAFdqN00DBwPUvVT"
@@ -15,7 +16,7 @@ const stripePromise = loadStripe(
 
 export default function Home() {
   const handleBuy = async () => {
-    const getSessionId = await axios.get(
+    const getSessionId = await axios.post(
       "https://keen-meitner-56c2e9.netlify.app/.netlify/functions/stripe"
     )
 
