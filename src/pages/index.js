@@ -18,6 +18,7 @@ export default function Home() {
       identity.user && {
         headers: {
           Authorization: `bearer ${identity.user.token.access_token}`,
+          "Content-Type": "application/json",
         },
       }
     )

@@ -43,6 +43,13 @@ const eventCalendar = {
     dateTime: eventEndTime,
     timeZone,
   },
+  attendees: [
+    {
+      email: "",
+      displayName: "",
+      comment: "",
+    },
+  ],
 }
 
 exports.handler = async (event, context, callback) => {
