@@ -55,8 +55,12 @@ exports.handler = async (event, context, callback) => {
   const claims = context.clientContext && context.clientContext.user
 
   if (claims) {
+    console.log(claims.email)
+
     eventCalendar.attendees[0].email = claims.email
     eventCalendar.attendees[0].displayName = claims.user_metadata.full_name
+
+    console.log(eventCalendar.attendees[0].email)
 
     switch (event.httpMethod) {
       // get all incomming reservation
