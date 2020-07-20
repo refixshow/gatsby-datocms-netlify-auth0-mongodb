@@ -58,7 +58,7 @@ export default function Home() {
   //     })
   // }
 
-  const handlePostClick = async () => {
+  const handlePostCalendar = async () => {
     const res = await axios.post("/.netlify/functions/googleCalendarDEV")
 
     console.log(res)
