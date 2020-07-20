@@ -22,7 +22,7 @@ const mailOptions = {
   text: "text",
 }
 
-exports.handler = function (event, context, callback) {
+exports.handler = async (event, context, callback) => {
   const { email, text } = JSON.parse(event.body)
 
   if (event.httpMethod === "POST" && email && text) {

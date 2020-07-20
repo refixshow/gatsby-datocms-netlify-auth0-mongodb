@@ -26,9 +26,9 @@ eventEndTime.setMinutes(eventEndTime.getMinutes() + 45)
 const timeZone = "Europe/Warsaw"
 // Create a dummy event for temp uses in our calendar
 const eventCalendar = {
-  summary: `Meeting with David`,
-  location: `3595 California St, San Francisco, CA 94118`,
-  description: `Meet with David to talk about the new client project and how to integrate the calendar for booking.`,
+  summary: `Rzęsy`,
+  location: `Świerzna`,
+  description: `Rzęsy`,
   colorId: 1,
   start: {
     dateTime: eventStartTime,
@@ -60,7 +60,7 @@ exports.handler = function (event, context, callback) {
         const eventArr = res.data.calendars.primary.busy
 
         // Check if event array is empty which means we are not busy
-        if (eventArr.length === 0)
+        if (eventArr.length < 4)
           // If we are not busy create a new calendar event.
           return calendar.events.insert(
             { calendarId: "primary", resource: eventCalendar },
