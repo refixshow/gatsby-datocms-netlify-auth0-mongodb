@@ -17,7 +17,7 @@ export default function Home() {
       "https://keen-meitner-56c2e9.netlify.app/.netlify/functions/stripe",
       identity.user && {
         headers: {
-          Authorization: `bearer ${identity.user.token.access_token}`,
+          Authorization: `Bearer ${identity.user.token.access_token}`,
           "Content-Type": "application/json",
         },
       }
@@ -61,7 +61,8 @@ export default function Home() {
 
   const handlePostCalendar = async () => {
     const res = await axios.post(
-      "/.netlify/functions/googleCalendarDEV",
+      "https://keen-meitner-56c2e9.netlify.app/.netlify/functions/googleCalendarDEV",
+      null,
       identity.user && {
         headers: {
           Authorization: `Bearer ${identity.user.token.access_token}`,
