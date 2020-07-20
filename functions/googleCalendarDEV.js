@@ -47,7 +47,6 @@ const eventCalendar = {
     {
       email: "",
       displayName: "",
-      comment: "",
     },
   ],
 }
@@ -56,6 +55,9 @@ exports.handler = async (event, context, callback) => {
   const claims = context.clientContext && context.clientContext.user
 
   if (claims) {
+    eventCalendar.attendees[0].email = claims.email
+    eventCalendar.attendees[0].displayName = claims.user_metadata.full_name
+
     switch (event.httpMethod) {
       // get all incomming reservation
       case "GET": {
@@ -135,6 +137,9 @@ exports.handler = async (event, context, callback) => {
         })
       }
     }
+
+    eventCalendar.attendees[0].email = ""
+    eventCalendar.attendees[0].displayName = ""
   } else {
     callback(null, {
       statusCode: 401,
