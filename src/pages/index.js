@@ -64,7 +64,8 @@ export default function Home() {
       "/.netlify/functions/googleCalendarDEV",
       identity.user && {
         headers: {
-          Authorization: `bearer ${identity.user.token.access_token}`,
+          Authorization: `Bearer ${identity.user.token.access_token}`,
+          "Content-Type": "application/json",
         },
       }
     )
