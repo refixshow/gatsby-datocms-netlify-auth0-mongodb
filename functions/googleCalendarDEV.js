@@ -48,90 +48,83 @@ const eventCalendar = {
 exports.handler = async (event, context, callback) => {
   const claims = context.clientContext && context.clientContext.user
 
-  if (claims) {
-    switch (event.httpMethod) {
-      // get all incomming reservation
-      case "GET": {
-        callback(null, {
-          statusCode: 404,
-          headers,
-          body: "GET",
-        })
-      }
-
-      // add or update reservation
-      case "POST": {
-        calendar.freebusy.query(
-          {
-            resource: {
-              timeMin: eventStartTime,
-              timeMax: eventEndTime,
-              timeZone,
-              items: [{ id: "primary" }],
-            },
-          },
-          (err, res) => {
-            // Check for errors in our query and log them if they exist.
-            if (err) return console.error("Free Busy Query Error: ", err)
-
-            // Create an array of all events on our calendar during that time.
-            const eventArr = res.data.calendars.primary.busy
-
-            // Check if event array is empty which means we are not busy
-            if (eventArr.length === 0)
-              // If we are not busy create a new calendar event.
-              return calendar.events.insert(
-                { calendarId: "primary", resource: eventCalendar },
-                err => {
-                  // Check for errors and log them if they exist.
-                  if (err)
-                    return console.error("Error Creating Calender Event:", err)
-                  // Else log that the event was created.
-                  return console.log("Calendar event successfully created.")
-                }
-              )
-
-            // If event array is not empty log that we are busy.
-            return console.log(`Sorry I'm busy...`)
-          }
-        )
-
-        callback(null, {
-          statusCode: 404,
-          headers,
-          body: "POST",
-        })
-      }
-
-      case "PUT": {
-        callback(null, {
-          statusCode: 404,
-          headers,
-          body: "PUT",
-        })
-      }
-
-      // delete or update reservation
-      case "DELETE": {
-        callback(null, {
-          statusCode: 404,
-          headers,
-          body: "DELETE",
-        })
-      }
-
-      default: {
-        callback(null, {
-          statusCode: 404,
-          headers,
-          body: "get out",
-        })
-      }
+  switch (event.httpMethod) {
+    // get all incomming reservation
+    case "GET": {
+      callback(null, {
+        statusCode: 200,
+        headers,
+        body: "GET",
+      })
     }
-  } else {
-    callback(null, {
-      statusCode: 401,
-      body: "NOT AUTHORIZED",
-    })
+
+    // add or update reservation
+    case "POST": {
+      calendar.freebusy.query(
+        {
+          resource: {
+            timeMin: eventStartTime,
+            timeMax: eventEndTime,
+            timeZone,
+            items: [{ id: "primary" }],
+          },
+        },
+        (err, res) => {
+          // Check for errors in our query and log them if they exist.
+          if (err) return console.error("Free Busy Query Error: ", err)
+
+          // Create an array of all events on our calendar during that time.
+          const eventArr = res.data.calendars.primary.busy
+
+          // Check if event array is empty which means we are not busy
+          if (eventArr.length === 0)
+            // If we are not busy create a new calendar event.
+            return calendar.events.insert(
+              { calendarId: "primary", resource: eventCalendar },
+              err => {
+                // Check for errors and log them if they exist.
+                if (err)
+                  return console.error("Error Creating Calender Event:", err)
+                // Else log that the event was created.
+                return console.log("Calendar event successfully created.")
+              }
+            )
+
+          // If event array is not empty log that we are busy.
+          return console.log(`Sorry I'm busy...`)
+        }
+      )
+
+      callback(null, {
+        statusCode: 200,
+        headers,
+        body: "POST",
+      })
+    }
+
+    case "PUT": {
+      callback(null, {
+        statusCode: 200,
+        headers,
+        body: "PUT",
+      })
+    }
+
+    // delete or update reservation
+    case "DELETE": {
+      callback(null, {
+        statusCode: 200,
+        headers,
+        body: "DELETE",
+      })
+    }
+
+    default: {
+      callback(null, {
+        statusCode: 200,
+        headers,
+        body: "get out",
+      })
+    }
   }
 }
