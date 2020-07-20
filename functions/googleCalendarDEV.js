@@ -34,7 +34,7 @@ const eventCalendar = {
   summary: `Rzęsy`,
   location: `Świerzna`,
   description: `Rzęsy`,
-  colorId: 1,
+  colorId: 3,
   start: {
     dateTime: eventStartTime,
     timeZone,

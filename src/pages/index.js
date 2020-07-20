@@ -59,7 +59,14 @@ export default function Home() {
   // }
 
   const handlePostCalendar = async () => {
-    const res = await axios.post("/.netlify/functions/googleCalendarDEV")
+    const res = await axios.post(
+      "/.netlify/functions/googleCalendarDEV",
+      identity.user && {
+        headers: {
+          Authorization: `bearer ${identity.user.token.access_token}`,
+        },
+      }
+    )
 
     console.log(res)
   }
