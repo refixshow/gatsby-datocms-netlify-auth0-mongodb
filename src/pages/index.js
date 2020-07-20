@@ -58,6 +58,12 @@ export default function Home() {
   //     })
   // }
 
+  const handlePostClick = async () => {
+    const res = await axios.post("/.netlify/functions/googleCalendarDEV")
+
+    console.log(res)
+  }
+
   return (
     <Layout>
       {/* Hello world!
@@ -73,6 +79,7 @@ export default function Home() {
       ></iframe> */}
       <pre>{JSON.stringify(identity, null, 2)}</pre>{" "}
       <button onClick={handleBuy}>XD</button>
+      <button onClick={handlePostCalendar}>PostCalendar</button>
     </Layout>
   )
 }
