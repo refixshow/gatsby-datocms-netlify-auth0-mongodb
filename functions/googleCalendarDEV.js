@@ -43,25 +43,12 @@ const eventCalendar = {
     dateTime: eventEndTime,
     timeZone,
   },
-  attendees: [
-    {
-      email: "",
-      displayName: "",
-    },
-  ],
 }
 
 exports.handler = async (event, context, callback) => {
   const claims = context.clientContext && context.clientContext.user
 
   if (claims) {
-    console.log(typeof claims.email)
-
-    eventCalendar.attendees[0].email = claims.email
-    eventCalendar.attendees[0].displayName = claims.user_metadata.full_name
-
-    console.log(typeof eventCalendar.attendees[0].email)
-
     switch (event.httpMethod) {
       // get all incomming reservation
       case "GET": {
@@ -93,16 +80,23 @@ exports.handler = async (event, context, callback) => {
             // Check if event array is empty which means we are not busy
             if (eventArr.length === 0)
               // If we are not busy create a new calendar event.
-              return calendar.events.insert(
-                { calendarId: "primary", resource: eventCalendar },
-                err => {
-                  // Check for errors and log them if they exist.
-                  if (err)
-                    return console.error("Error Creating Calender Event:", err)
-                  // Else log that the event was created.
-                  return console.log("Calendar event successfully created.")
-                }
-              )
+              return calendar.events
+                .insert(
+                  { calendarId: "primary", resource: eventCalendar },
+                  err => {
+                    // Check for errors and log them if they exist.
+                    if (err)
+                      return console.error(
+                        "Error Creating Calender Event:",
+                        err
+                      )
+                    // Else log that the event was created.
+                    return console.log("Calendar event successfully created.")
+                  }
+                )
+                .then(res => {
+                  console.log(res)
+                })
 
             // If event array is not empty log that we are busy.
             return console.log(`Sorry I'm busy...`)
@@ -141,9 +135,6 @@ exports.handler = async (event, context, callback) => {
         })
       }
     }
-
-    eventCalendar.attendees[0].email = ""
-    eventCalendar.attendees[0].displayName = ""
   } else {
     callback(null, {
       statusCode: 401,
