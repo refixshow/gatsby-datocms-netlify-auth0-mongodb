@@ -1,6 +1,9 @@
 import React from "react"
 import axios from "axios"
+
+import { Elements } from "@stripe/react-stripe-js"
 import { loadStripe } from "@stripe/stripe-js"
+import CheckoutForm from "../components/CheckoutForm"
 
 import Layout from "../components/layout"
 import { useIdentityContext } from "react-netlify-identity-widget"
@@ -12,84 +15,24 @@ const stripePromise = loadStripe(
 export default function Home() {
   const identity = useIdentityContext()
 
-  const handleBuy = async () => {
-    const getSessionId = await axios(
-      "https://keen-meitner-56c2e9.netlify.app/.netlify/functions/stripe",
-      identity.user && {
-        headers: {
-          Authorization: `Bearer ${identity.user.token.access_token}`,
-          "Content-Type": "application/json",
-        },
-      }
-    )
-
-    const stripe = await stripePromise
-
-    const { error } = await stripe.redirectToCheckout({
-      sessionId: getSessionId.data.sessionId,
-    })
-
-    if (error) {
-      console.log(error)
-    }
-  }
-
-  // const handlePostClick = () => {
-  //   axios
-  //     .post("/.netlify/functions/sendEmail", {
-  //       email: "adamscieszka@gmail.com",
-  //       text: "custom message",
-  //     })
-  //     .then(response => {
-  //       console.log(response)
-  //     })
-  //     .catch(err => {
-  //       console.log(err)
-  //     })
+  // const handlePutCalendar = async () => {
+  //   const res = await axios.put(
+  //     "/.netlify/functions/googleCalendarDEV",
+  //     null,
+  //     identity.user && {
+  //       headers: {
+  //         Authorization: `Bearer ${identity.user.token.access_token}`,
+  //         "Content-Type": "application/json",
+  //       },
+  //     }
+  //   )
   // }
-
-  // const handleGetClick = () => {
-  //   axios
-  //     .get("/.netlify/functions/sendEmail")
-  //     .then(response => {
-  //       console.log(response)
-  //     })
-  //     .catch(err => {
-  //       console.log(err)
-  //     })
-  // }
-
-  const handlePostCalendar = async () => {
-    const res = await axios.post(
-      "https://keen-meitner-56c2e9.netlify.app/.netlify/functions/googleCalendarDEV",
-      null,
-      identity.user && {
-        headers: {
-          Authorization: `Bearer ${identity.user.token.access_token}`,
-          "Content-Type": "application/json",
-        },
-      }
-    )
-
-    console.log(res)
-  }
 
   return (
     <Layout>
-      {/* Hello world!
-      <button onClick={handlePostClick}>Post</button>
-      <button onClick={handleGetClick}>Get</button>
-      <iframe
-        src="https://calendar.google.com/calendar/embed?src=adamscieszka%40gmail.com&ctz=Europe%2FWarsaw"
-        width="800"
-        height="600"
-        frameborder="0"
-        scrolling="no"
-        title="google calendar"
-      ></iframe> */}
-      <pre>{JSON.stringify(identity, null, 2)}</pre>{" "}
-      <button onClick={handleBuy}>XD</button>
-      <button onClick={handlePostCalendar}>PostCalendar</button>
+      <Elements stripe={stripePromise}>
+        <CheckoutForm />
+      </Elements>
     </Layout>
   )
 }
