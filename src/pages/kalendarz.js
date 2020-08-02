@@ -12,6 +12,8 @@ const Container = styled.div`
   margin: 0 auto;
 `;
 
+const xd = "xd";
+
 const Scheduler = () => {
   return (
     <Container>
