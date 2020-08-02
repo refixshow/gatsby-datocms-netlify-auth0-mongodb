@@ -1,7 +1,7 @@
-import React from "react"
-import styled from "styled-components"
+import React from "react";
+import styled from "styled-components";
 
-import SchedulerComponent from "../components/organisms/scheduler"
+import SchedulerComponent from "../components/organisms/Scheduler";
 
 const Container = styled.div`
   display: flex;
@@ -10,14 +10,14 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-`
+`;
 
 const Scheduler = () => {
   return (
     <Container>
       <SchedulerComponent />
     </Container>
-  )
-}
+  );
+};
 
-export default Scheduler
+export default Scheduler;
