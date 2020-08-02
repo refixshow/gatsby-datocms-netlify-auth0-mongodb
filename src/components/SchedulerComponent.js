@@ -1,15 +1,15 @@
-import React, { useState, useEffect, useCallback } from "react"
-import axios from "axios"
-import styled from "styled-components"
+import React, { useState, useEffect, useCallback } from "react";
+import axios from "axios";
+import styled from "styled-components";
 
-import SwiperCore, { Navigation, Pagination } from "swiper"
-import { Swiper, SwiperSlide } from "swiper/react"
-import "swiper/swiper.scss"
-import "swiper/components/navigation/navigation.scss"
-import "swiper/components/pagination/pagination.scss"
-import "swiper/components/scrollbar/scrollbar.scss"
+import SwiperCore, { Navigation, Pagination } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper.scss";
+import "swiper/components/navigation/navigation.scss";
+import "swiper/components/pagination/pagination.scss";
+import "swiper/components/scrollbar/scrollbar.scss";
 
-SwiperCore.use([Navigation, Pagination])
+SwiperCore.use([Navigation, Pagination]);
 
 const Slide = styled.div`
   display: flex;
@@ -20,22 +20,24 @@ const Slide = styled.div`
     width: 100%;
     background-color: red;
   }
-`
+`;
+
+const xddd = 2;
 
 const SchedulerComponent = () => {
-  const [terms, setTerms] = useState(null)
+  const [terms, setTerms] = useState(null);
 
   const fetchTerms = useCallback(async () => {
     const {
       data: { reservedTerms, freeTerms },
-    } = await axios("/.netlify/functions/googleCalendar")
+    } = await axios("/.netlify/functions/googleCalendar");
 
-    setTerms({ reservedTerms, freeTerms })
-  }, [])
+    setTerms({ reservedTerms, freeTerms });
+  }, []);
 
   useEffect(() => {
-    fetchTerms()
-  }, [fetchTerms])
+    fetchTerms();
+  }, [fetchTerms]);
 
   return (
     <>
@@ -62,7 +64,7 @@ const SchedulerComponent = () => {
         ))}
       </Swiper>
     </>
-  )
-}
+  );
+};
 
-export default SchedulerComponent
+export default SchedulerComponent;
